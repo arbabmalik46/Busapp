@@ -9,49 +9,72 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="189dp"
-        android:layout_height="146dp"
+        android:layout_width="150dp"
+        android:layout_height="79dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/busfinal" />
 
-    <Button
-        android:id="@+id/b1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:backgroundTint="@color/black"
-        android:textColor="#fff"
-        android:text="Add Buses"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+    <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="165dp"
+            android:layout_height="162dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:srcCompat="@drawable/addbuses" />
 
-    <Button
-        android:id="@+id/b2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:backgroundTint="@color/black"
-        android:textColor="#fff"
-        android:text="Add Customer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/b1" />
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="166dp"
+            android:layout_height="157dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:srcCompat="@drawable/displaybus" />
 
-    <Button
-        android:id="@+id/b3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="192dp"
-        android:backgroundTint="@color/black"
-        android:textColor="#fff"
-        android:text="Add Location"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="162dp"
+            android:layout_height="167dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+            app:srcCompat="@drawable/adduser" />
+
+        <ImageButton
+            android:id="@+id/imageButton7"
+            android:layout_width="173dp"
+            android:layout_height="168dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="29dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton4"
+            app:srcCompat="@drawable/displayuser" />
+
+    <ImageButton
+        android:id="@+id/imageButton8"
+        android:layout_width="153dp"
+        android:layout_height="132dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="17dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/b2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton5"
+        app:srcCompat="@drawable/user2" />
+
+    <ImageButton
+        android:id="@+id/imageButton10"
+        android:layout_width="159dp"
+        android:layout_height="142dp"
+        android:layout_marginEnd="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton7"
+        app:srcCompat="@drawable/whyonline" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +36,7 @@ public class Addbuses extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addbuses);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
 
         busno=(EditText)findViewById(R.id.e1);
         busname=(EditText)findViewById(R.id.e2);
@@ -151,6 +153,8 @@ public class Addbuses extends AppCompatActivity implements View.OnClickListener 
             registerDbRef.push().setValue(information);
 
             Toast.makeText(getApplicationContext(),"Record Inserted",Toast.LENGTH_LONG).show();
+
+
 
 
 

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -21,14 +22,15 @@ public class Login extends AppCompatActivity {
 
     EditText e1,e2;
     Button b1,b2;
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         e1=(EditText)findViewById(R.id.edit1);
         e2=(EditText)findViewById(R.id.edit2);
         b1=(Button)findViewById(R.id.Go);
@@ -38,39 +40,47 @@ public class Login extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user=e1.getText().toString().trim();
-                String password=e2.getText().toString().trim();
-                if (TextUtils.isEmpty(user)) {
 
-                    Toast.makeText(Login.this, "Please Enter Email", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(Login.this, "Please Enter Password", Toast.LENGTH_LONG).show();
-                    return;
-
-                }
-                firebaseAuth.signInWithEmailAndPassword(user,password)
-                        .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()) {
-
-                                            Intent intent =new Intent(Login.this,WelcomePage.class);
-
-
-                                        } else {
-                                            // If sign in fails, display a message to the user.
-                                            Toast.makeText(Login.this, "Login Failed or User not Found", Toast.LENGTH_LONG).show();
-
-                                        }
-                                    }
-                                }
-                        );
-
+            userLogin();
 
             }
         });
 
     }
+    private void userLogin() {
+        String user = e1.getText().toString().trim();
+        String password = e2.getText().toString().trim();
+        if (TextUtils.isEmpty(user)) {
+
+            Toast.makeText(Login.this, "Please Enter Email", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(Login.this, "Please Enter Password", Toast.LENGTH_LONG).show();
+            return;
+
+        }
+        if(user.equals("Admin") && password.equals("Admin"))
+        {
+            Intent intent=new Intent(Login.this,AdminPannel.class);
+            startActivity(intent);
+
+        }
+
+        else {
+            mAuth.signInWithEmailAndPassword(user, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                startActivity(new Intent(Login.this, WelcomePage.class));
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Failed to Login", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+        }
+    }
+
+
 }

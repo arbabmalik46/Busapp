@@ -1,6 +1,7 @@
 package com.example.busapp;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,6 +14,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
@@ -34,9 +40,12 @@ public class SearchBus2 extends Fragment implements View.OnClickListener {
     TextView datetxt;
     TextView e1,e2;
     Spinner busroute,busroute2;
+    private FirebaseAuth firebaseAuth;
     Button b1,b2;
     private int mYear, mMonth, mDay;
     String d;
+    private ProgressDialog progressDialog;
+    private DatabaseReference databaseReference;
 
     public SearchBus2() {
         // Required empty public constructor
@@ -63,6 +72,8 @@ public class SearchBus2 extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -73,6 +84,9 @@ public class SearchBus2 extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+
+
         View v=inflater.inflate(R.layout.fragment_search_bus2, container, false);
 
         e1=(TextView)v.findViewById(R.id.editText);
@@ -90,6 +104,8 @@ public class SearchBus2 extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
         if(v==b1)
         {
             final Calendar c = Calendar.getInstance();
@@ -115,11 +131,27 @@ public class SearchBus2 extends Fragment implements View.OnClickListener {
         if(v==b2)
         {
 
-            String departure=busroute.getSelectedItem().toString();
-            String arrival=busroute2.getSelectedItem().toString();
+                firebaseAuth = FirebaseAuth.getInstance();
+                progressDialog = new ProgressDialog(getActivity());
 
-            Intent search2=new Intent(getActivity(),Login.class);
-            startActivity(search2);
+                progressDialog.setMessage("Searching Buses Please Wait...");
+                progressDialog.show();
+
+
+                String departure = busroute.getSelectedItem().toString();
+                String arrival = busroute2.getSelectedItem().toString();
+
+
+//                FirebaseUser register = firebaseAuth.getCurrentUser();
+//                databaseReference.child(register.getUid()).child("Buses").setValue(bookingDetails);
+
+                Intent search2 = new Intent(getActivity(), Booking.class);
+                search2.putExtra("from", departure);
+                search2.putExtra("To", arrival);
+                search2.putExtra("Date", d);
+                startActivity(search2);
+                progressDialog.dismiss();
+
         }
 
 

@@ -4,43 +4,55 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class WelcomePage extends AppCompatActivity {
-
+    ImageView img;
     private BottomNavigationView bootom;
-    Fragment selectFragment=null;
+    Fragment selectFragment = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
-        bootom =findViewById(R.id.bottom_navigation_menu);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+
+        bootom = findViewById(R.id.bottom_navigation_menu);
         bootom.setOnNavigationItemSelectedListener(ButtonNavMethod);
     }
-    private BottomNavigationView.OnNavigationItemSelectedListener ButtonNavMethod= new
+
+    private BottomNavigationView.OnNavigationItemSelectedListener ButtonNavMethod = new
             BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                    switch (item.getItemId())
-                    {
+                    img = (ImageView) findViewById(R.id.img2);
+                    switch (item.getItemId()) {
                         case R.id.bottom_navigation_home:
-                            selectFragment=new Dashboard_home2();
+                            img.setVisibility(View.INVISIBLE);
+                            selectFragment = new Dashboard_home2();
                             break;
                         case R.id.BookingTab:
-                            selectFragment=new SearchBus2();
-
+                            startActivity(new Intent(WelcomePage.this, SearchBus.class));
+                            break;
+                        case R.id.profiletab:
+                            startActivity(new Intent(WelcomePage.this, Profile.class));
+                            break;
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmant_container,selectFragment).commit();
-                return true;
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmant_container, selectFragment).commit();
+                    return true;
 
                 }
 
             };
 }
+
 
 

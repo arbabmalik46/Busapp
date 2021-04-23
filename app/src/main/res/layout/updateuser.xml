@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bus_image"
+        android:layout_width="174dp"
+        android:layout_height="94dp"
+        android:layout_gravity="left"
+        android:layout_margin="1dp"
+        android:src="@drawable/busfinal"
+        android:transitionName="bus_image"
+        />
+
+    <TextView
+        android:id="@+id/welcomeonsignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee"
+        android:text="WELCOME for Some Updation"
+        android:textColor="#000000"
+        android:textSize="36sp"
+        android:transitionName="Text" />
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="150dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/pid"
+
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded"
+                android:textAlignment="center"
+                android:hint="Passenger ID"/>
+        <EditText
+                android:id="@+id/name"
+
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded"
+            android:textAlignment="center"
+                android:hint="Fullname"/>
+
+        <EditText
+
+                android:id="@+id/UsernameSignup"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded"
+            android:textAlignment="center"
+                android:hint="Email"
+            />
+           <EditText
+                android:id="@+id/phonenumber"
+               android:layout_width="300dp"
+               android:layout_height="50dp"
+               android:layout_gravity="center"
+               android:background="@drawable/rounded"
+               android:textAlignment="center"
+                android:hint="Phone number"
+
+                />
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded"
+                android:textAlignment="center"
+                android:hint="Enter password"
+                />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded"
+                android:textAlignment="center"
+                android:hint="Enter Route"
+                />
+
+
+
+            <Button
+                android:id="@+id/b1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+
+                android:text="Update"
+                android:backgroundTint="@color/black"
+                android:textColor="#fff"
+                android:transitionName="button_tran" />
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

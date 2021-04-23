@@ -11,17 +11,10 @@
                 android:id="@+id/booking"
                 android:icon="@drawable/booking"
                 />
-
         <item
             android:title="Profile"
             android:id="@+id/profile"
             android:icon="@drawable/user"/>
-            <item
-            android:title="Update password"
-            android:id="@+id/updatepassword"
-           android:icon="@drawable/ic_baseline_vpn_key_24"/>
-
-
         </menu>
         </item>
     </group>
@@ -33,14 +26,8 @@
 
         <item
             android:title="Contact us"
-            android:id="@+id/cotactus"
+            android:id="@+id/contactus"
             android:icon="@drawable/phone"/>
-            <item
-
-                android:title="Contact developer"
-                android:id="@+id/developer"
-                android:icon="@drawable/developer"
-                />
             <item
 
                 android:title="Submit feedback"

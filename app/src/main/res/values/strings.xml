@@ -21,9 +21,34 @@
         <item>Muslim Town</item>
         <item>College Road</item>
     </array>
+
+    <string-array name="loc">
+        <item>Mall Road</item>
+        <item>Samnabad</item>
+        <item>Gulshan Ravi</item>
+        <item>Green Town</item>
+        <item>Wapda Town</item>
+        <item>Model Town</item>
+        <item>Johar Town</item>
+        <item>Raiwind Road</item>
+        <item>Emporium Mall</item>
+        <item>Jail Road</item>
+        <item>Punjab University</item>
+        <item>Mughalpura</item>
+        <item>Harbanspura</item>
+        <item>Gulberg</item>
+        <item>DHA</item>
+        <item>Cant</item>
+        <item>Muslim Town</item>
+        <item>College Road</item>
+        <item>Township</item>
+
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_test">Test</string>
+    <string name="gmail_link">https://mail.google.com/mail/u/0/#inbox?compose=new</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
