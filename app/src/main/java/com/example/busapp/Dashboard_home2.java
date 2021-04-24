@@ -90,7 +90,7 @@ public class Dashboard_home2 extends Fragment {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.booking:
-                            startActivity(new Intent(getActivity(), SearchBus.class));
+                            startActivity(new Intent(getActivity(), Booking.class));
                             break;
                         case R.id.profile:
                             selectFragment = new Register_Class();

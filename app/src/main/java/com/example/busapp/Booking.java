@@ -30,7 +30,7 @@ public class Booking extends AppCompatActivity {
     private RecyclerView recview;
     BookingAdapter adapter;
     DatabaseReference mbase;
-Context ctx;
+
     private FirebaseAuth firebaseAuth;
     FirebaseUser user;
 
@@ -40,95 +40,22 @@ Context ctx;
         setContentView(R.layout.activity_booking);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
 
-        String Frombus = getIntent().getStringExtra("from");
-        String toBus = getIntent().getStringExtra("to");
-        String datebus = getIntent().getStringExtra("Date");
 
-        recview = findViewById(R.id.recview);
+        mbase=FirebaseDatabase.getInstance().getReference().child("Buses");
+        recview=(RecyclerView)findViewById(R.id.recview);
+
         recview.setLayoutManager(new LinearLayoutManager(this));
 
-        mbase = FirebaseDatabase.getInstance().getReference().child("Buses");
-        Query query =mbase.orderByChild("arrival").equalTo("Wapda Town");
-//
-//        firebaseAuth = FirebaseAuth.getInstance();
-//        user = firebaseAuth.getCurrentUser();
+        FirebaseRecyclerOptions<Buses> options =
+                new FirebaseRecyclerOptions.Builder<Buses>()
+                        .setQuery(mbase, Buses.class)
+                        .build();
 
-                FirebaseRecyclerOptions<Buses> op =
-                        new FirebaseRecyclerOptions.Builder<Buses>()
-                                .setQuery(query, Buses.class)
-                                .build();
-                adapter=new BookingAdapter(op);
-                recview.setAdapter(adapter);
-
-
+        adapter=new BookingAdapter(options);
+        recview.setAdapter(adapter);
 
 
     }
-
-
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                if (snapshot.exists()) {
-//                    for (DataSnapshot ds : snapshot.getChildren()) {
-//                        FirebaseRecyclerOptions<Buses> op =
-//                                new FirebaseRecyclerOptions.Builder<Buses>()
-//                                        .setQuery(mbase, Buses.class)
-//                                        .build();
-//                        adapter = new BookingAdapter(op);
-//                        recview.setAdapter(adapter);
-//                    }
-//                }
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
-//        FirebaseRecyclerOptions<Buses> op =
-//                new FirebaseRecyclerOptions.Builder<Buses>()
-//                        .setQuery(mbase, Buses.class)
-//                        .build();
-//        adapter = new BookingAdapter(op);
-//        recview.setAdapter(adapter);
-
-//        firebaseAuth = FirebaseAuth.getInstance();
-//
-//        if (firebaseAuth.getCurrentUser() == null) {
-//            finish();
-//            startActivity(new Intent(this, Login.class));
-//        }
-//
-//        FirebaseDatabase.getInstance().getReference("Buses")
-//                .orderByChild("depature").equalTo(Frombus)
-//                .addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                        if (dataSnapshot.exists()) {
-//                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                                FirebaseRecyclerOptions<Buses> op =
-//                                        new FirebaseRecyclerOptions.Builder<Buses>()
-//                                                .setQuery(mbase, Buses.class)
-//                                                .build();
-//                                adapter = new BookingAdapter(op);
-//                                recview.setAdapter(adapter);
-//
-//                            }
-//                            adapter.notifyDataSetChanged();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//                        Toast.makeText(Booking.this, "Firebase Database Error", Toast.LENGTH_LONG).show();
-//                    }
-//                });
-
-
 
 
 
@@ -148,138 +75,3 @@ Context ctx;
     }
 }
 
-
-//
-//        firebaseAuth = FirebaseAuth.getInstance();
-//        mbase= FirebaseDatabase.getInstance().getReference();
-//
-//        if (firebaseAuth.getCurrentUser() == null) {
-//            finish();
-//            startActivity(new Intent(this, Login.class));
-//        }
-//
-//        String Frombus =getIntent().getStringExtra("from");
-//        String toBus=getIntent().getStringExtra("to");
-//        String datebus=getIntent().getStringExtra("Date");
-//
-//        FirebaseDatabase.getInstance().getReference("Buses")
-//                .orderByChild("depature").equalTo(Frombus)
-//                .addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                if(dataSnapshot.exists())
-//                           {
-//                    for(DataSnapshot snapshot:dataSnapshot.getChildren() )
-//                    {  FirebaseRecyclerOptions<Buses> op =
-//                            new FirebaseRecyclerOptions.Builder<Buses>()
-//                                    .setQuery(mbase, Buses.class)
-//                                    .build();
-//                        adapter=new BookingAdapter(op);
-//                        recview.setAdapter(adapter);
-//
-//                    }
-//                    adapter.notifyDataSetChanged();
-//                }
-////                FirebaseDatabase.getInstance().getReference().child("Buses")
-////                        .orderByChild("arrival")
-////                        .equalTo(toBus)
-////                        .addValueEventListener(new ValueEventListener() {
-////                            @Override
-////                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//////                                busList.clear();
-////
-////                                if(dataSnapshot.exists())
-////                                {
-////                                    for(DataSnapshot snapshot:dataSnapshot.getChildren())
-////                                    {
-////                                        FirebaseRecyclerOptions<Buses> op =
-////                                                new FirebaseRecyclerOptions.Builder<Buses>()
-////                                                        .setQuery(mbase, Buses.class)
-////                                                        .build();
-////                                        adapter=new BookingAdapter(op);
-////                                        recview.setAdapter(adapter);
-//////                                        Buses buses=snapshot.getValue(Buses.class);
-//////                                        busList.add(buses);
-////                                    }
-////                                    adapter.notifyDataSetChanged();
-////                                }
-////                                FirebaseDatabase.getInstance().getReference()
-////                                        .child("date").equalTo(datebus)
-////                                        .addValueEventListener(new ValueEventListener() {
-////                                            @Override
-////                                            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-////
-////                                                if(dataSnapshot.exists())
-////                                                {
-////                                                    for(DataSnapshot snapshot:dataSnapshot.getChildren())
-////                                                    {
-////                                                        FirebaseRecyclerOptions<Buses> op =
-////                                                                new FirebaseRecyclerOptions.Builder<Buses>()
-////                                                                        .setQuery(mbase, Buses.class)
-////                                                                        .build();
-////                                                        adapter=new BookingAdapter(op);
-////                                                        recview.setAdapter(adapter);
-////                                                    }
-//////                                                        Buses buses=snapshot.getValue(Buses.class);
-//////                                                             busList.add(buses);
-//////                                                    }
-////                                                    adapter.notifyDataSetChanged();
-////                                                }
-////
-////
-////                                            }
-////
-////                                            @Override
-////                                            public void onCancelled(@NonNull DatabaseError error) {
-////                                                Toast.makeText(Booking.this,"Firebase Database Error",Toast.LENGTH_LONG).show();
-////
-////                                            }
-////                                        });
-//
-//
-//
-////                            }
-////
-////                            @Override
-////                            public void onCancelled(@NonNull DatabaseError error) {
-////                                Toast.makeText(Booking.this,"Firebase Database Error",Toast.LENGTH_LONG).show();
-////
-////                            }
-////                        });
-//
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(Booking.this,"Firebase Database Error",Toast.LENGTH_LONG).show();
-//
-//
-//            }
-//        });
-//    }
-//    ValueEventListener valueEventListener=new ValueEventListener() {
-//        @Override
-//        public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-//
-//            if(datasnapshot.exists())
-//            {
-//                for(DataSnapshot snapshot:datasnapshot.getChildren())
-//                {
-//                    FirebaseRecyclerOptions<Buses> op =
-//                            new FirebaseRecyclerOptions.Builder<Buses>()
-//                                    .setQuery(mbase, Buses.class)
-//                                    .build();
-//                    adapter=new BookingAdapter(op);
-//                    recview.setAdapter(adapter);
-//                }
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//        }
-//
-//        @Override
-//        public void onCancelled(@NonNull DatabaseError error) {
-//
-//        }
-//    };
-//}

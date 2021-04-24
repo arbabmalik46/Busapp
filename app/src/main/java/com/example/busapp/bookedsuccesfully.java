@@ -42,7 +42,7 @@ public class bookedsuccesfully extends AppCompatActivity {
         gohome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(bookedsuccesfully.this, WelcomePage.class);
+                Intent intent = new Intent(bookedsuccesfully.this, Feedback.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }

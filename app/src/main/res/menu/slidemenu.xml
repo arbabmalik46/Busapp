@@ -48,11 +48,6 @@
         android:id="@+id/logout"
         android:icon="@drawable/ic_baseline_reply_24"
         />
-    <item
-        android:title="Seat manager"
-        android:id="@+id/seatmagaer"
-        android:icon="@drawable/calendar"
-        />
 
 
 </group>

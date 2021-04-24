@@ -40,13 +40,16 @@ public class WelcomePage extends AppCompatActivity {
                             selectFragment = new Dashboard_home2();
                             break;
                         case R.id.BookingTab:
-                            startActivity(new Intent(WelcomePage.this, SearchBus.class));
+                            startActivity(new Intent(WelcomePage.this, Booking.class));
                             break;
                         case R.id.profiletab:
-                            startActivity(new Intent(WelcomePage.this, Profile.class));
-                            break;
+                          selectFragment=new Favourite();
+//                        startActivity(new Intent(WelcomePage.this, Profile.class));
+                          break;
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmant_container, selectFragment).commit();
+
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmant_container,selectFragment).commit();
+
                     return true;
 
                 }

@@ -53,6 +53,7 @@
         android:layout_marginStart="140dp"
         android:layout_marginLeft="140dp"
         android:layout_marginTop="36dp"
+        android:backgroundTint="@color/black"
         android:text="Submit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/message" />
@@ -77,7 +78,8 @@
         android:layout_marginLeft="116dp"
         android:layout_marginTop="84dp"
         android:text="FeedBack"
-        android:textSize="35dp"
+        android:fontFamily="@font/latto_bangers"
+        android:textSize="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

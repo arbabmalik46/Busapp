@@ -30,28 +30,9 @@ public class Profile extends AppCompatActivity {
         t2 = (EditText)findViewById(R.id.editemail);
         t3 = (EditText)findViewById(R.id.editphone);
 
-        firebaseAuth=FirebaseAuth.getInstance();
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-        userID=firebaseAuth.getUid();
-
-
-        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Register");
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Register userprofile=snapshot.getValue(Register.class);
-                t1.setText(userprofile.getFullname());
-                t2.setText(userprofile.getUser());
-                t3.setText(userprofile.getPhone());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
+       t1.setText(GlobalVar.currentUser.getFullname());
+       t2.setText(GlobalVar.currentUser.getUser());
+       t3.setText(GlobalVar.currentUser.getPhone());
 
     }
 }

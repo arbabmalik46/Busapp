@@ -30,6 +30,7 @@ public class SearchBus extends AppCompatActivity implements View.OnClickListener
     Button b1,b2;
     private int mYear, mMonth, mDay;
     String d;
+    String arrival;
     private ProgressDialog progressDialog;
     private DatabaseReference databaseReference;
 
@@ -98,7 +99,7 @@ public class SearchBus extends AppCompatActivity implements View.OnClickListener
             progressDialog.show();
 
 
-            String arrival = busroute2.getSelectedItem().toString();
+            arrival = busroute2.getSelectedItem().toString();
 
             BookingDetails bookingDetails = new BookingDetails(
 
@@ -107,7 +108,7 @@ public class SearchBus extends AppCompatActivity implements View.OnClickListener
             );
 //  FirebaseUser register = firebaseAuth.getCurrentUser();
 
- databaseReference.child("Buses").orderByChild("arrival").equalTo(arrival);
+databaseReference.child("Buses").orderByChild("arrival").equalTo(arrival);
 //
 
         Intent search2 = new Intent(SearchBus.this, Booking.class);

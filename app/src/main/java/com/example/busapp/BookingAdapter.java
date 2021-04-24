@@ -1,5 +1,6 @@
 package com.example.busapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,17 +19,22 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 
 import java.util.List;
+import java.util.Random;
 
 public class BookingAdapter extends FirebaseRecyclerAdapter<Buses,BookingAdapter.viewholder> {
-    Context context;
+
     private List<Buses> mList;
+    private Activity mactivity;
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     public BookingAdapter(@NonNull FirebaseRecyclerOptions<Buses> options)
     {
         super(options);
+
     }
 
     @Override
@@ -45,33 +52,43 @@ public class BookingAdapter extends FirebaseRecyclerAdapter<Buses,BookingAdapter
         holder.book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String busno=model.getBusno();
-                String busname=model.getBusname();
-                String from=model.getDepature();
-                String to=model.getArrival();
-                String seats=model.getSeats();
-                String date=model.getDate();
-                String depttime=model.getTimedept();
-                String arrtime=model.getTimearrv();
+                final DialogPlus dialogPlus=DialogPlus.newDialog(holder.busno.getContext())
+                        .setContentHolder(new ViewHolder(R.layout.activity_ticket))
+                        .setExpanded(true,1350)
+                        .create();
+                Random r = new Random();
+                int random_no = r.nextInt((9999999 - 10)+ 9999999);
+                View myview=dialogPlus.getHolderView();
 
-                Buses buses=new Buses(busno,
-                        busname,
-                        from,
-                        to,
-                        seats,
-                        date,
-                        depttime,
-                        arrtime
-                );
-                FirebaseUser user1=firebaseAuth.getCurrentUser();
-                databaseReference.child(user1.getUid()).child("Buses").setValue(buses);
-                Intent intent=new Intent(context.getApplicationContext(),Ticket_Class.class);
-                intent.putExtra("from",from);
-                intent.putExtra("to",to);
-                intent.putExtra("date",date);
-                intent.putExtra("Dept time",depttime);
-                intent.putExtra("Arrical Time",arrtime);
-                context.startActivity(intent);
+                TextView ticketno=myview.findViewById(R.id.random_ticket);
+                TextView dept=myview.findViewById(R.id.textView14);
+                TextView depttime=myview.findViewById(R.id.textView15);
+                TextView date=myview.findViewById(R.id.textView16);
+                TextView busno=myview.findViewById(R.id.textView17);
+               TextView rand = myview.findViewById(R.id.random_ticket);
+
+                Button feedback=myview.findViewById(R.id.button3);
+
+                rand.setText("#"+random_no);
+                busno.setText(model.getBusno());
+                dept.setText(model.getDepature());
+                date.setText(model.getDate());
+                depttime.setText(model.getTimedept());
+
+                dialogPlus.show();
+
+                feedback.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+
+
+                        Toast.makeText(v.getContext(), "Your Ticket has been Confirmed Now Enjoy your Journey", Toast.LENGTH_SHORT).show();
+
+
+                    }
+                });
 
             }
         });

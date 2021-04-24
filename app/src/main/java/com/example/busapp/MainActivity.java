@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     b1=(Button)findViewById(R.id.b1);
+        b2=(Button)findViewById(R.id.b2);
 //    final PopupMenu popupMenu=new PopupMenu(MainActivity.this,busroute);
 //    MenuInflater menuInflater = popupMenu.getMenuInflater();
 //    menuInflater.inflate(R.menu.dropdownbusselection, popupMenu.getMenu());
@@ -69,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
 
             insertRegister();
 
+        }
+    });
+    b2.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent=new Intent(getApplicationContext(),Login.class);
+            startActivity(intent);
         }
     });
 
