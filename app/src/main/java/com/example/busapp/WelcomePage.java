@@ -46,6 +46,8 @@ public class WelcomePage extends AppCompatActivity {
                           selectFragment=new Favourite();
 //                        startActivity(new Intent(WelcomePage.this, Profile.class));
                           break;
+                        case R.id.location:
+                            startActivity(new Intent(WelcomePage.this, Location.class));
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragmant_container,selectFragment).commit();
